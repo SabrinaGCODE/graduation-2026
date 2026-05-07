@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   :root {
     --cream: #F4EFE4;
     --cream-dark: #E8E0D0;
@@ -17,7 +17,7 @@
     --gold: #B8952A;
     --muted: #7A7060;
   }
- 
+
   body {
     background: var(--cream);
     font-family: 'Cormorant Garamond', serif;
@@ -29,7 +29,7 @@
     padding: 2rem;
     overflow-x: hidden;
   }
- 
+
   .page {
     background: var(--cream);
     max-width: 560px;
@@ -38,7 +38,7 @@
     padding: 3.5rem 3rem 4rem;
     text-align: center;
   }
- 
+
   /* Decorative border frame */
   .page::before {
     content: '';
@@ -56,7 +56,7 @@
     opacity: 0.2;
     pointer-events: none;
   }
- 
+
   /* Corner accents */
   .corner {
     position: absolute;
@@ -69,7 +69,7 @@
   .corner.tr { top: 8px; right: 8px; transform: scaleX(-1); }
   .corner.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
   .corner.br { bottom: 8px; right: 8px; transform: scale(-1); }
- 
+
   /* Animations */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
@@ -83,7 +83,7 @@
     from { transform: scaleX(0); }
     to   { transform: scaleX(1); }
   }
- 
+
   @keyframes capDrop {
     0%   { opacity: 0; transform: translateY(-110px) rotate(-12deg); }
     65%  { opacity: 1; transform: translateY(10px) rotate(2deg); }
@@ -106,7 +106,7 @@
     80%  { transform: rotate(-5deg); }
     100% { transform: rotate(0deg); }
   }
- 
+
   .name-wrap {
     display: flex;
     align-items: center;
@@ -114,7 +114,7 @@
     gap: 0.6rem;
     margin-top: 0.15rem;
   }
- 
+
   .grad-figure {
     width: 68px;
     flex-shrink: 0;
@@ -133,10 +133,10 @@
     transform-origin: 9px 22px;
     animation: tassleSwing 1.4s ease-in-out 2.8s both;
   }
- 
+
   .fade-up { opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
   .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
- 
+
   .d1  { animation-delay: 0.2s; }
   .d2  { animation-delay: 0.5s; }
   .d3  { animation-delay: 0.8s; }
@@ -145,7 +145,7 @@
   .d6  { animation-delay: 1.7s; }
   .d7  { animation-delay: 2.0s; }
   .d8  { animation-delay: 2.3s; }
- 
+
   /* Typography */
   .eyebrow {
     font-family: 'DM Mono', monospace;
@@ -155,7 +155,7 @@
     color: var(--cork);
     font-weight: 300;
   }
- 
+
   .script-you {
     font-style: italic;
     font-size: 15px;
@@ -163,7 +163,7 @@
     color: var(--muted);
     margin-top: 1.8rem;
   }
- 
+
   .big-name {
     font-size: clamp(46px, 12vw, 64px);
     font-weight: 300;
@@ -172,12 +172,12 @@
     margin-top: 0.15rem;
     color: var(--ink);
   }
- 
+
   .big-name em {
     font-style: italic;
     color: var(--sage);
   }
- 
+
   .divider {
     display: flex;
     align-items: center;
@@ -200,18 +200,18 @@
     border-radius: 50%;
     background: var(--gold);
   }
- 
+
   .degree-block {
     margin-top: 0.2rem;
   }
- 
+
   .degree-title {
     font-size: 22px;
     font-weight: 600;
     letter-spacing: 0.01em;
     color: var(--ink);
   }
- 
+
   .degree-sub {
     font-family: 'DM Mono', monospace;
     font-size: 10.5px;
@@ -220,7 +220,7 @@
     margin-top: 5px;
     font-weight: 300;
   }
- 
+
   .university {
     font-style: italic;
     font-size: 18px;
@@ -228,7 +228,7 @@
     color: var(--sage);
     margin-top: 0.5rem;
   }
- 
+
   .details-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -237,7 +237,7 @@
     text-align: left;
     padding: 0 0.5rem;
   }
- 
+
   .detail-item label {
     display: block;
     font-family: 'DM Mono', monospace;
@@ -247,7 +247,7 @@
     color: var(--cork);
     margin-bottom: 5px;
   }
- 
+
   .detail-item span {
     font-size: 15px;
     font-weight: 400;
@@ -255,7 +255,7 @@
     line-height: 1.3;
     font-style: italic;
   }
- 
+
   .closing-rule {
     width: 60px;
     height: 0.5px;
@@ -263,7 +263,7 @@
     margin: 2.5rem auto 0;
     opacity: 0.4;
   }
- 
+
   .closing-text {
     font-style: italic;
     font-size: 16px;
@@ -272,7 +272,7 @@
     margin-top: 1.2rem;
     line-height: 1.7;
   }
- 
+
   .rsvp-mono {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -282,14 +282,14 @@
     text-transform: uppercase;
     font-weight: 300;
   }
- 
+
   .rsvp-contact {
     font-size: 15px;
     font-style: italic;
     color: var(--sage);
     margin-top: 4px;
   }
- 
+
   .tag-line {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
@@ -299,7 +299,7 @@
     margin-top: 3rem;
     text-transform: uppercase;
   }
- 
+
   /* Scattered decorative dashes — design-y texture */
   .texture-row {
     display: flex;
@@ -334,7 +334,7 @@
 </head>
 <body>
 <div class="page">
- 
+
   <!-- Corner decorations -->
   <div class="corner tl">
     <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -364,16 +364,16 @@
       <circle cx="13" cy="13" r="3" fill="none" stroke="#8C6E4F" stroke-width="0.5"/>
     </svg>
   </div>
- 
+
   <!-- Eyebrow -->
   <p class="eyebrow fade-up d1">Please join us to celebrate</p>
- 
+
   <!-- Script intro -->
   <p class="script-you fade-up d2">the graduation of</p>
- 
+
   <!-- Name with animated cap + gown figures -->
   <div class="name-wrap">
- 
+
     <!-- LEFT figure: cap + gown -->
     <svg class="grad-figure" viewBox="0 0 65 108" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Gown body -->
@@ -403,13 +403,13 @@
         <rect x="52" y="43" width="9" height="7" rx="2" fill="#B8952A"/>
       </g>
     </svg>
- 
+
     <!-- Name text -->
     <h1 class="big-name fade-up d3" style="margin-top:0; flex:1; min-width:0;">
       <em>Sabrina</em><br>
-      [Your Last Name]
+      Garcia
     </h1>
- 
+
     <!-- RIGHT figure: cap + gown (mirrored) -->
     <svg class="grad-figure right" viewBox="0 0 65 108" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
       <!-- Gown body -->
@@ -439,16 +439,16 @@
         <rect x="52" y="43" width="9" height="7" rx="2" fill="#B8952A"/>
       </g>
     </svg>
- 
+
   </div>
- 
+
   <!-- Divider -->
   <div class="divider fade-in d4">
     <div class="divider-line" style="animation-delay:1.1s; opacity:0; animation: growLine 0.8s cubic-bezier(0.22,1,0.36,1) 1.1s forwards, fadeIn 0s 1.1s forwards;"></div>
     <div class="divider-dot"></div>
     <div class="divider-line" style="animation-delay:1.1s; opacity:0; animation: growLine 0.8s cubic-bezier(0.22,1,0.36,1) 1.1s forwards, fadeIn 0s 1.1s forwards;"></div>
   </div>
- 
+
   <!-- Degree -->
   <div class="degree-block fade-up d4">
     <div class="degree-title">Bachelor of Arts</div>
@@ -457,14 +457,14 @@
     <div class="degree-sub" style="margin-top:3px;">Minors in Web Design &amp; Web Development</div>
     <div class="university">George Mason University</div>
   </div>
- 
+
   <!-- Texture -->
   <div class="texture-row fade-in d5">
     <span></span><span></span><span></span><span></span><span></span>
   </div>
- 
+
   <!-- Details grid -->
-  <div class="details-grid fade-up d5" style="grid-template-columns:1fr 1fr;">
+  <div class="details-grid fade-up d5" style="grid-template-columns:1fr 1fr 1fr;">
     <div class="detail-item">
       <label>Date</label>
       <span>Thursday<br>May 14, 2026</span>
@@ -473,12 +473,12 @@
       <label>Time</label>
       <span>7:00 PM</span>
     </div>
-    <div class="detail-item" style="grid-column: 1 / -1;">
-      <label>Celebrating at</label>
+    <div class="detail-item">
+      <label>Celebrating with at</label>
       <span>Home Cookout</span>
     </div>
   </div>
- 
+
   <!-- Closing -->
   <div class="closing-rule fade-in d6"></div>
   <p class="closing-text fade-up d6">
@@ -486,10 +486,10 @@
     to raise a glass and celebrate<br>
     <em>this milestone with you.</em>
   </p>
- 
+
   <!-- Tag line -->
   <p class="tag-line fade-in d7">GMU · Class of 2026 · ©Sabrina</p>
- 
+
 </div>
 <script>
   const colors = ['#B8952A','#4A5D4E','#8C6E4F','#2B2518','#D4B87A','#7A9E82','#C9A96E','#E8D5A3'];
