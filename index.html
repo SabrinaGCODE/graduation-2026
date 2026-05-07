@@ -330,6 +330,15 @@
     80%  { opacity: 1; }
     100% { transform: translateY(105vh) rotate(720deg) scaleX(-1); opacity: 0; }
   }
+  @media (max-width: 440px) {
+    .name-wrap { gap: 0.25rem; }
+    .grad-figure { width: 38px; }
+    .big-name { font-size: clamp(28px, 9vw, 44px) !important; }
+  }
+  @media (max-width: 360px) {
+    .grad-figure { display: none; }
+    .big-name { font-size: clamp(36px, 11vw, 52px) !important; }
+  }
 </style>
 </head>
 <body>
@@ -407,7 +416,7 @@
     <!-- Name text -->
     <h1 class="big-name fade-up d3" style="margin-top:0; flex:1; min-width:0;">
       <em>Sabrina</em><br>
-      Garcia
+    Garcia
     </h1>
 
     <!-- RIGHT figure: cap + gown (mirrored) -->
