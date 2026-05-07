@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sabrina's Graduation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --cream: #F4EFE4;
+    --cream-dark: #E8E0D0;
+    --ink: #2B2518;
+    --sage: #4A5D4E;
+    --cork: #8C6E4F;
+    --gold: #B8952A;
+    --muted: #7A7060;
+  }
+ 
+  body {
+    background: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow-x: hidden;
+  }
+ 
+  .page {
+    background: var(--cream);
+    max-width: 560px;
+    width: 100%;
+    position: relative;
+    padding: 3.5rem 3rem 4rem;
+    text-align: center;
+  }
+ 
+  /* Decorative border frame */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid var(--cork);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .page::after {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border: 0.5px solid var(--cork);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+ 
+  /* Corner accents */
+  .corner {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    opacity: 0.55;
+  }
+  .corner svg { width: 100%; height: 100%; }
+  .corner.tl { top: 8px; left: 8px; }
+  .corner.tr { top: 8px; right: 8px; transform: scaleX(-1); }
+  .corner.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+  .corner.br { bottom: 8px; right: 8px; transform: scale(-1); }
+ 
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes growLine {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+ 
+  @keyframes capDrop {
+    0%   { opacity: 0; transform: translateY(-110px) rotate(-12deg); }
+    65%  { opacity: 1; transform: translateY(10px) rotate(2deg); }
+    80%  { transform: translateY(-5px) rotate(-1deg); }
+    90%  { transform: translateY(4px) rotate(1deg); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  }
+  @keyframes capDropR {
+    0%   { opacity: 0; transform: translateY(-110px) rotate(12deg); }
+    65%  { opacity: 1; transform: translateY(10px) rotate(-2deg); }
+    80%  { transform: translateY(-5px) rotate(1deg); }
+    90%  { transform: translateY(4px) rotate(-1deg); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  }
+  @keyframes tassleSwing {
+    0%   { transform: rotate(0deg); }
+    20%  { transform: rotate(28deg); }
+    45%  { transform: rotate(-18deg); }
+    65%  { transform: rotate(10deg); }
+    80%  { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
+ 
+  .name-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 0.15rem;
+  }
+ 
+  .grad-figure {
+    width: 68px;
+    flex-shrink: 0;
+    opacity: 0;
+    animation: capDrop 1s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
+  }
+  .grad-figure.right {
+    animation-name: capDropR;
+    animation-delay: 1.7s;
+  }
+  .tassel-group {
+    transform-origin: 56px 22px;
+    animation: tassleSwing 1.4s ease-in-out 2.6s both;
+  }
+  .tassel-group-r {
+    transform-origin: 9px 22px;
+    animation: tassleSwing 1.4s ease-in-out 2.8s both;
+  }
+ 
+  .fade-up { opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
+ 
+  .d1  { animation-delay: 0.2s; }
+  .d2  { animation-delay: 0.5s; }
+  .d3  { animation-delay: 0.8s; }
+  .d4  { animation-delay: 1.1s; }
+  .d5  { animation-delay: 1.4s; }
+  .d6  { animation-delay: 1.7s; }
+  .d7  { animation-delay: 2.0s; }
+  .d8  { animation-delay: 2.3s; }
+ 
+  /* Typography */
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cork);
+    font-weight: 300;
+  }
+ 
+  .script-you {
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 1.8rem;
+  }
+ 
+  .big-name {
+    font-size: clamp(46px, 12vw, 64px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-top: 0.15rem;
+    color: var(--ink);
+  }
+ 
+  .big-name em {
+    font-style: italic;
+    color: var(--sage);
+  }
+ 
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.6rem auto;
+    max-width: 320px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--cork);
+    opacity: 0.4;
+    transform-origin: center;
+    animation: growLine 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+    opacity: 0;
+  }
+  .divider-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+ 
+  .degree-block {
+    margin-top: 0.2rem;
+  }
+ 
+  .degree-title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+ 
+  .degree-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.15em;
+    color: var(--cork);
+    margin-top: 5px;
+    font-weight: 300;
+  }
+ 
+  .university {
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--sage);
+    margin-top: 0.5rem;
+  }
+ 
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+    margin-top: 2.2rem;
+    text-align: left;
+    padding: 0 0.5rem;
+  }
+ 
+  .detail-item label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cork);
+    margin-bottom: 5px;
+  }
+ 
+  .detail-item span {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+    font-style: italic;
+  }
+ 
+  .closing-rule {
+    width: 60px;
+    height: 0.5px;
+    background: var(--cork);
+    margin: 2.5rem auto 0;
+    opacity: 0.4;
+  }
+ 
+  .closing-text {
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 1.2rem;
+    line-height: 1.7;
+  }
+ 
+  .rsvp-mono {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--cork);
+    margin-top: 2rem;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+ 
+  .rsvp-contact {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--sage);
+    margin-top: 4px;
+  }
+ 
+  .tag-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--cork);
+    opacity: 0.55;
+    margin-top: 3rem;
+    text-transform: uppercase;
+  }
+ 
+  /* Scattered decorative dashes — design-y texture */
+  .texture-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 1rem 0;
+  }
+  .texture-row span {
+    display: inline-block;
+    width: 18px;
+    height: 0.5px;
+    background: var(--cork);
+    opacity: 0.3;
+  }
+  .texture-row span:nth-child(2) { width: 6px; }
+  .texture-row span:nth-child(4) { width: 6px; }
+  .confetti-piece {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    top: -10px;
+    opacity: 0;
+    animation: confettiFall linear forwards;
+    border-radius: 1px;
+  }
+  @keyframes confettiFall {
+    0%   { transform: translateY(0) rotate(0deg) scaleX(1);   opacity: 1; }
+    80%  { opacity: 1; }
+    100% { transform: translateY(105vh) rotate(720deg) scaleX(-1); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+ 
+  <!-- Corner decorations -->
+  <div class="corner tl">
+    <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="13" x2="26" y2="13" stroke="#8C6E4F" stroke-width="0.5"/>
+      <line x1="13" y1="0" x2="13" y2="26" stroke="#8C6E4F" stroke-width="0.5"/>
+      <circle cx="13" cy="13" r="3" fill="none" stroke="#8C6E4F" stroke-width="0.5"/>
+    </svg>
+  </div>
+  <div class="corner tr">
+    <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="13" x2="26" y2="13" stroke="#8C6E4F" stroke-width="0.5"/>
+      <line x1="13" y1="0" x2="13" y2="26" stroke="#8C6E4F" stroke-width="0.5"/>
+      <circle cx="13" cy="13" r="3" fill="none" stroke="#8C6E4F" stroke-width="0.5"/>
+    </svg>
+  </div>
+  <div class="corner bl">
+    <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="13" x2="26" y2="13" stroke="#8C6E4F" stroke-width="0.5"/>
+      <line x1="13" y1="0" x2="13" y2="26" stroke="#8C6E4F" stroke-width="0.5"/>
+      <circle cx="13" cy="13" r="3" fill="none" stroke="#8C6E4F" stroke-width="0.5"/>
+    </svg>
+  </div>
+  <div class="corner br">
+    <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="13" x2="26" y2="13" stroke="#8C6E4F" stroke-width="0.5"/>
+      <line x1="13" y1="0" x2="13" y2="26" stroke="#8C6E4F" stroke-width="0.5"/>
+      <circle cx="13" cy="13" r="3" fill="none" stroke="#8C6E4F" stroke-width="0.5"/>
+    </svg>
+  </div>
+ 
+  <!-- Eyebrow -->
+  <p class="eyebrow fade-up d1">Please join us to celebrate</p>
+ 
+  <!-- Script intro -->
+  <p class="script-you fade-up d2">the graduation of</p>
+ 
+  <!-- Name with animated cap + gown figures -->
+  <div class="name-wrap">
+ 
+    <!-- LEFT figure: cap + gown -->
+    <svg class="grad-figure" viewBox="0 0 65 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Gown body -->
+      <path d="M20,46 L8,108 L57,108 L45,46 Q32,53 20,46 Z" fill="#2B2518"/>
+      <!-- Left sleeve -->
+      <path d="M20,48 L6,68 L13,72 L23,55" fill="#2B2518"/>
+      <!-- Right sleeve -->
+      <path d="M45,48 L59,68 L52,72 L42,55" fill="#2B2518"/>
+      <!-- Yoke/collar -->
+      <path d="M22,39 Q32,46 43,39 L45,48 Q32,53 20,48 Z" fill="#332B1E"/>
+      <!-- Gown center line -->
+      <line x1="32" y1="53" x2="32" y2="108" stroke="#3D3020" stroke-width="0.8" opacity="0.35"/>
+      <!-- Cap body (cylinder) -->
+      <rect x="22" y="22" width="20" height="18" rx="2" fill="#332B1E"/>
+      <!-- Cap board (diamond) -->
+      <polygon points="32,6 60,19 32,32 4,19" fill="#2B2518"/>
+      <polygon points="32,6 60,19 32,32 4,19" fill="none" stroke="#4A3D2C" stroke-width="0.6"/>
+      <!-- Button on board -->
+      <circle cx="32" cy="17" r="2.2" fill="#4A3D2C"/>
+      <!-- Tassel base cord (static) -->
+      <line x1="60" y1="19" x2="57" y2="24" stroke="#B8952A" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Tassel swing group -->
+      <g class="tassel-group">
+        <line x1="57" y1="24" x2="55" y2="44" stroke="#B8952A" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="57" y1="24" x2="57" y2="44" stroke="#B8952A" stroke-width="1.1" stroke-linecap="round" opacity="0.75"/>
+        <line x1="57" y1="24" x2="59" y2="43" stroke="#B8952A" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/>
+        <rect x="52" y="43" width="9" height="7" rx="2" fill="#B8952A"/>
+      </g>
+    </svg>
+ 
+    <!-- Name text -->
+    <h1 class="big-name fade-up d3" style="margin-top:0; flex:1; min-width:0;">
+      <em>Sabrina</em><br>
+      [Your Last Name]
+    </h1>
+ 
+    <!-- RIGHT figure: cap + gown (mirrored) -->
+    <svg class="grad-figure right" viewBox="0 0 65 108" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1);">
+      <!-- Gown body -->
+      <path d="M20,46 L8,108 L57,108 L45,46 Q32,53 20,46 Z" fill="#2B2518"/>
+      <!-- Left sleeve -->
+      <path d="M20,48 L6,68 L13,72 L23,55" fill="#2B2518"/>
+      <!-- Right sleeve -->
+      <path d="M45,48 L59,68 L52,72 L42,55" fill="#2B2518"/>
+      <!-- Yoke/collar -->
+      <path d="M22,39 Q32,46 43,39 L45,48 Q32,53 20,48 Z" fill="#332B1E"/>
+      <!-- Gown center line -->
+      <line x1="32" y1="53" x2="32" y2="108" stroke="#3D3020" stroke-width="0.8" opacity="0.35"/>
+      <!-- Cap body -->
+      <rect x="22" y="22" width="20" height="18" rx="2" fill="#332B1E"/>
+      <!-- Cap board -->
+      <polygon points="32,6 60,19 32,32 4,19" fill="#2B2518"/>
+      <polygon points="32,6 60,19 32,32 4,19" fill="none" stroke="#4A3D2C" stroke-width="0.6"/>
+      <!-- Button -->
+      <circle cx="32" cy="17" r="2.2" fill="#4A3D2C"/>
+      <!-- Tassel base cord -->
+      <line x1="60" y1="19" x2="57" y2="24" stroke="#B8952A" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Tassel swing group (mirrored logic) -->
+      <g class="tassel-group-r">
+        <line x1="57" y1="24" x2="55" y2="44" stroke="#B8952A" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="57" y1="24" x2="57" y2="44" stroke="#B8952A" stroke-width="1.1" stroke-linecap="round" opacity="0.75"/>
+        <line x1="57" y1="24" x2="59" y2="43" stroke="#B8952A" stroke-width="0.9" stroke-linecap="round" opacity="0.5"/>
+        <rect x="52" y="43" width="9" height="7" rx="2" fill="#B8952A"/>
+      </g>
+    </svg>
+ 
+  </div>
+ 
+  <!-- Divider -->
+  <div class="divider fade-in d4">
+    <div class="divider-line" style="animation-delay:1.1s; opacity:0; animation: growLine 0.8s cubic-bezier(0.22,1,0.36,1) 1.1s forwards, fadeIn 0s 1.1s forwards;"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-line" style="animation-delay:1.1s; opacity:0; animation: growLine 0.8s cubic-bezier(0.22,1,0.36,1) 1.1s forwards, fadeIn 0s 1.1s forwards;"></div>
+  </div>
+ 
+  <!-- Degree -->
+  <div class="degree-block fade-up d4">
+    <div class="degree-title">Bachelor of Arts</div>
+    <div class="degree-title" style="font-size:18px; margin-top:2px;">&amp; Visual Technology</div>
+    <div class="degree-sub" style="margin-top:6px;">Interdisciplinary Arts</div>
+    <div class="degree-sub" style="margin-top:3px;">Minors in Web Design &amp; Web Development</div>
+    <div class="university">George Mason University</div>
+  </div>
+ 
+  <!-- Texture -->
+  <div class="texture-row fade-in d5">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+ 
+  <!-- Details grid -->
+  <div class="details-grid fade-up d5" style="grid-template-columns:1fr 1fr;">
+    <div class="detail-item">
+      <label>Date</label>
+      <span>Thursday<br>May 14, 2026</span>
+    </div>
+    <div class="detail-item">
+      <label>Time</label>
+      <span>7:00 PM</span>
+    </div>
+    <div class="detail-item" style="grid-column: 1 / -1;">
+      <label>Celebrating at</label>
+      <span>Home Cookout</span>
+    </div>
+  </div>
+ 
+  <!-- Closing -->
+  <div class="closing-rule fade-in d6"></div>
+  <p class="closing-text fade-up d6">
+    It would be the greatest honor<br>
+    to raise a glass and celebrate<br>
+    <em>this milestone with you.</em>
+  </p>
+ 
+  <!-- Tag line -->
+  <p class="tag-line fade-in d7">GMU · Class of 2026 · ©Sabrina</p>
+ 
+</div>
+<script>
+  const colors = ['#B8952A','#4A5D4E','#8C6E4F','#2B2518','#D4B87A','#7A9E82','#C9A96E','#E8D5A3'];
+  const shapes = ['0px','50%'];
+  function burst() {
+    const count = 72;
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('div');
+      el.className = 'confetti-piece';
+      const size = 5 + Math.random() * 8;
+      el.style.width  = size + 'px';
+      el.style.height = (size * (0.4 + Math.random() * 0.8)) + 'px';
+      el.style.left   = (Math.random() * 100) + 'vw';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.borderRadius = shapes[Math.floor(Math.random() * shapes.length)];
+      const duration = 2.8 + Math.random() * 3;
+      const delay    = 1.8 + Math.random() * 2.5;
+      el.style.animationDuration = duration + 's';
+      el.style.animationDelay   = delay + 's';
+      document.body.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }
+  }
+  burst();
+  setTimeout(burst, 4500);
+</script>
+</body>
+</html>
